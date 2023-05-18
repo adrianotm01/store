@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import br.com.ecommerce.store.product.model.Product;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, UUID> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
 }
