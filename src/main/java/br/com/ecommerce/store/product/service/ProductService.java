@@ -45,6 +45,8 @@ public class ProductService {
     }
 
     public void createProduct(ProductDTO productDTO) {
-        productRepository.save(objectMapper.convertValue(productDTO,Product.class));
+        Product product = objectMapper.convertValue(productDTO,Product.class);
+        System.out.println(product);
+        productRepository.save(product);
     }
 }
