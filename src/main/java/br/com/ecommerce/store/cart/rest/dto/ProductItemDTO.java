@@ -1,4 +1,4 @@
-package br.com.ecommerce.store.product.rest.dto;
+package br.com.ecommerce.store.cart.rest.dto;
 
 import java.math.BigDecimal;
 
@@ -10,11 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDTO {
+public class ProductItemDTO {
 
-    private BigDecimal price;
-
-    private String name;
+    private Long id;
 
     private DiscountDTO discount;
 

@@ -1,12 +1,10 @@
 package br.com.ecommerce.store.product.service;
 
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.ecommerce.store.exception.NotFoundException;
 import br.com.ecommerce.store.product.db.ProductRepository;
 import br.com.ecommerce.store.product.model.Product;
 import br.com.ecommerce.store.product.rest.dto.ProductDTO;
@@ -27,7 +25,7 @@ public class ProductService {
     }
 
     public ProductDTO getProductById(Long id){
-        ProductDTO productDTO =  objectMapper.convertValue(productRepository.findById(id).orElseThrow(), ProductDTO.class);
+        ProductDTO productDTO =  objectMapper.convertValue(productRepository.findById(id).orElseThrow(()-> new NotFoundException("Produto não encontrado")), ProductDTO.class);
         return productDTO;
     }
 
@@ -40,13 +38,12 @@ public class ProductService {
 
     public void deleteProduct(Long id){
         productRepository.delete(
-                productRepository.findById(id).orElseThrow()
+                productRepository.findById(id).orElseThrow(()-> new NotFoundException("Produto não encontrado"))
         );
     }
 
     public void createProduct(ProductDTO productDTO) {
         Product product = objectMapper.convertValue(productDTO,Product.class);
-        System.out.println(product);
         productRepository.save(product);
     }
 }
